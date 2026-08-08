@@ -81,6 +81,7 @@ Admin Panel: [http://127.0.0.1:8000/admin/]
 
 Key Feature Map
 ---------------
+
 Endpoint	    Access Level	        Description
 /	            Public	                Paginated published posts, search, and category/tag
 
