@@ -13,6 +13,7 @@ Prerequisites
 
 Setup & Installation
 1. Clone the Repository & Environment Setup:
+   
     Navigate to your project root directory and set up the virtual environment:
     # Create virtual environment
         python3 -m venv myenv
@@ -23,7 +24,8 @@ Setup & Installation
         # Activate virtual environment (Windows)
         # myenv\Scripts\activate
         
-2. Install Dependencies:
+3. Install Dependencies:
+   
     Create a requirements.txt file with the necessary dependencies:
     Django>=4.2.0,<5.0.0
     psycopg2-binary>=2.9.0
@@ -45,7 +47,8 @@ Setup & Installation
     DB_HOST=localhost
     DB_PORT=5432
 
- Database Configuration & Migrations
+ Database Configuration & Migrations:
+ 
         1. PostgreSQL Database Setup
         Ensure PostgreSQL is active and create the database specified in your .env file:
 
