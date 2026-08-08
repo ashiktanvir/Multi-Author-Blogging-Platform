@@ -12,7 +12,7 @@ Prerequisites
     3. Environment: Virtual environment (venv)
 
 Setup & Installation
-1. Clone the Repository & Environment Setup
+1. Clone the Repository & Environment Setup:
     Navigate to your project root directory and set up the virtual environment:
     # Create virtual environment
         python3 -m venv myenv
@@ -23,7 +23,7 @@ Setup & Installation
         # Activate virtual environment (Windows)
         # myenv\Scripts\activate
         
-2. Install Dependencies
+2. Install Dependencies:
     Create a requirements.txt file with the necessary dependencies:
     Django>=4.2.0,<5.0.0
     psycopg2-binary>=2.9.0
