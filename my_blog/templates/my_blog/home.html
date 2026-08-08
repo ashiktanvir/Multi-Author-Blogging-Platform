@@ -1,0 +1,45 @@
+{% extends 'my_blog/base.html' %}
+
+{% block content %}
+<h2>Published Blog Posts</h2>
+
+<form method="get" action="{% url 'home' %}" style="margin-bottom: 20px;">
+    <input type="text" name="q" placeholder="Search posts..." value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+</form>
+
+<p>
+    Filter Category: 
+    {% for cat in categories %}
+        <a href="?category={{ cat.name }}">{{ cat.name }}</a>
+    {% endfor %}
+</p>
+
+{% for post in page_obj %}
+    <div class="post-card">
+        {% if post.featured_image %}
+            <img src="{{ post.featured_image.url }}" class="post-image" alt="{{ post.title }}">
+        {% endif %}
+        <h3><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h3>
+        {% comment %} <p>By <a href="{% url 'author_profile' username=post.author.username %}">{{ post.author.username }}</a> | Category: {{ post.category.name }} | {{ post.created_date|date:"F d, Y" }}</p> {% endcomment %}
+        <p>By <a href="{% url 'author_profile' username=post.author.username %}">{{ post.author.username }}</a> | Category: {{ post.category.name }} | {{ post.created_date|date:"F d, Y, h:i A" }}</p>
+        <p>{{ post.content|truncatewords:30 }}</p>
+    </div>
+{% empty %}
+    <p>No published posts found.</p>
+{% endfor %}
+
+<div>
+    {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; First</a>
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+    {% endif %}
+</div>
+{% endblock %}

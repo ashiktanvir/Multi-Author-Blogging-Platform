@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Multi-Author Blog{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        nav { background: #f4f4f4; padding: 10px; margin-bottom: 20px; }
+        nav a { margin-right: 15px; text-decoration: none; color: #333; }
+        .container { max-width: 900px; margin: auto; }
+        .post-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; }
+        .post-image { max-width: 100%; height: 200px; object-fit: cover; }
+        .tag { background: #eee; padding: 2px 6px; border-radius: 3px; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="{% url 'home' %}"><strong>Home</strong></a>
+            {% if user.is_authenticated %}
+                <span>Welcome, {{ user.username }}!</span>
+                {% if user.profile.is_author or user.is_superuser %}
+                    <a href="{% url 'author_dashboard' %}">Dashboard</a>
+                {% endif %}
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </nav>
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

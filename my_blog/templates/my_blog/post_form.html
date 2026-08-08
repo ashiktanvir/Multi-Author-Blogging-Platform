@@ -1,0 +1,11 @@
+{% extends 'my_blog/base.html' %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Post</button>
+</form>
+<a href="{% url 'author_dashboard' %}">Cancel</a>
+{% endblock %}

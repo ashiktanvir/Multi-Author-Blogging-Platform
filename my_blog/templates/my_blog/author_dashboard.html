@@ -1,0 +1,32 @@
+{% extends 'my_blog/base.html' %}
+
+{% block content %}
+<h2>Author Dashboard</h2>
+<p><a href="{% url 'post_create' %}">+ Create New Post</a></p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%;">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Views</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for post in posts %}
+            <tr>
+                <td><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></td>
+                <td>{{ post.status }}</td>
+                <td>{{ post.view_count }}</td>
+                <td>
+                    <a href="{% url 'post_edit' slug=post.slug %}">Edit</a> | 
+                    <a href="{% url 'post_delete' slug=post.slug %}">Delete</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="4">You haven't written any posts yet.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

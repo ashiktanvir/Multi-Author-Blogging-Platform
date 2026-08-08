@@ -1,0 +1,16 @@
+{% extends 'my_blog/base.html' %}
+
+{% block content %}
+<h2>Author Profile: {{ author.username }}</h2>
+<p>Total Published Posts: {{ posts.count }}</p>
+
+<h3>Published Posts</h3>
+{% for post in posts %}
+    <div class="post-card">
+        <h4><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h4>
+        <p>{{ post.created_date|date:"F d, Y" }}</p>
+    </div>
+{% empty %}
+    <p>This author has not published any posts yet.</p>
+{% endfor %}
+{% endblock %}
