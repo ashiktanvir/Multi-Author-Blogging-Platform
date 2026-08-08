@@ -55,7 +55,7 @@ Setup & Installation
         CREATE DATABASE multi_author_blogging;
 
         2. Static Folder Creation
-        Create an empty static directory in the project root to prevent staticfile setting warnings:
+        Create an empty static directory in the project root to prevent static file setting warnings:
         
         mkdir static
 
